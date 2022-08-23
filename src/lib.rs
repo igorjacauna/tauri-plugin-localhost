@@ -60,7 +60,7 @@ impl Builder {
         let asset_resolver = app.asset_resolver();
         std::thread::spawn(move || {
           let server =
-            Server::http(&format!("localhost:{}", port)).expect("Unable to spawn server");
+            Server::http(&format!("0.0.0.0:{}", port)).expect("Unable to spawn server");
           for req in server.incoming_requests() {
             #[allow(unused_mut)]
             if let Some(mut asset) = asset_resolver.get(req.url().into()) {
